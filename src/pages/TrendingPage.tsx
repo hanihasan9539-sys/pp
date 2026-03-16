@@ -78,12 +78,12 @@ const TrendingPage = () => {
             </span>
           </motion.div>
 
-          {/* Title — "Right Now" in TP Blue */}
+          {/* Title — "Right Now" in TP Blue - UPDATED to match Index page font weight */}
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="text-[26px] sm:text-4xl lg:text-5xl font-semibold tracking-tight text-foreground leading-tight"
+            className="text-[26px] sm:text-4xl lg:text-5xl font-black tracking-tight text-foreground leading-tight"
           >
             Trending
             <br />
