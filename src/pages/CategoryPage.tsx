@@ -16,7 +16,7 @@ const CategoryPage = () => {
       transition={{ duration: 0.25, ease: [0.32, 0.72, 0, 1] }}
       className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
     >
-      <h1 className="text-xl sm:text-2xl font-extrabold text-foreground mb-5 sm:mb-6">{title}</h1>
+      <h1 className="text-xl sm:text-2xl font-extrabold text-foreground pt-4 sm:pt-6 mb-5 sm:mb-6">{title}</h1>
 
       {/* Category pills — scroll on mobile, wrap on desktop - REDUCED SIZE */}
       <div className="flex gap-1.5 overflow-x-auto sm:overflow-x-visible sm:flex-wrap scrollbar-hide mb-5 pb-1">
