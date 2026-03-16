@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 4% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 4% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 4% 10%;
+    --primary: 194 79% 36%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 240 4% 10%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 220 9% 46%;
+    --accent: 357 90% 51%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 357 90% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 194 79% 36%;
+    --radius: 0.75rem;
+    --whatsapp: 142 71% 45%;
+    --whatsapp-foreground: 0 0% 100%;
+    --rating: 42 100% 50%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+/* paste this block immediately after the closing } of :root */
+.dark {
+  --background: 224 14% 8%;
+  --foreground: 220 13% 91%;
+  --card: 224 14% 11%;
+  --card-foreground: 220 13% 91%;
+  --popover: 224 14% 11%;
+  --popover-foreground: 220 13% 91%;
+  --primary: 194 79% 44%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 224 14% 15%;
+  --secondary-foreground: 220 13% 91%;
+  --muted: 224 14% 15%;
+  --muted-foreground: 220 9% 55%;
+  --accent: 357 90% 58%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 357 90% 58%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 224 14% 20%;
+  --input: 224 14% 20%;
+  --ring: 194 79% 44%;
+
+  --sidebar-background: 224 14% 10%;
+  --sidebar-foreground: 220 13% 85%;
+  --sidebar-primary: 220 13% 91%;
+  --sidebar-primary-foreground: 224 14% 8%;
+  --sidebar-accent: 224 14% 15%;
+  --sidebar-accent-foreground: 220 13% 91%;
+  --sidebar-border: 224 14% 20%;
+  --sidebar-ring: 194 79% 44%;
+}
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .text-pretty { text-wrap: pretty; }
+}
+
+/* Shimmer skeleton */
+@keyframes shimmer {
+  100% { transform: translateX(100%); }
+}
+.skeleton-shimmer {
+  @apply bg-secondary relative overflow-hidden;
+}
+.skeleton-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  animation: shimmer 1.5s infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: hsl(var(--primary) / 0.3); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(var(--primary) / 0.5); }
+
+/* Hide scrollbar for horizontal scroll */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
