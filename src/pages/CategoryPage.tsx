@@ -16,13 +16,13 @@ const CategoryPage = () => {
       transition={{ duration: 0.25, ease: [0.32, 0.72, 0, 1] }}
       className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
     >
-      <h1 className="text-2xl font-extrabold text-foreground mb-6">{title}</h1>
+      <h1 className="text-xl sm:text-2xl font-extrabold text-foreground mb-5 sm:mb-6">{title}</h1>
 
-      {/* Category pills — scroll on mobile, wrap on desktop */}
-      <div className="flex gap-2 overflow-x-auto sm:overflow-x-visible sm:flex-wrap scrollbar-hide mb-6 pb-1">
+      {/* Category pills — scroll on mobile, wrap on desktop - REDUCED SIZE */}
+      <div className="flex gap-1.5 overflow-x-auto sm:overflow-x-visible sm:flex-wrap scrollbar-hide mb-5 pb-1">
         <Link
           to="/categories"
-          className={`px-4 h-9 flex items-center rounded-lg text-sm font-medium whitespace-nowrap transition-all flex-shrink-0 ${
+          className={`px-3 sm:px-4 h-7 sm:h-9 flex items-center rounded-lg text-xs sm:text-sm font-medium whitespace-nowrap transition-all flex-shrink-0 ${
             !name
               ? "bg-primary text-primary-foreground"
               : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
@@ -34,7 +34,7 @@ const CategoryPage = () => {
           <Link
             key={cat.id}
             to={`/category/${cat.name}`}
-            className={`px-4 h-9 flex items-center rounded-lg text-sm font-medium whitespace-nowrap transition-all flex-shrink-0 sm:flex-shrink ${
+            className={`px-3 sm:px-4 h-7 sm:h-9 flex items-center rounded-lg text-xs sm:text-sm font-medium whitespace-nowrap transition-all flex-shrink-0 sm:flex-shrink ${
               name === cat.name
                 ? "bg-primary text-primary-foreground"
                 : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
@@ -51,10 +51,10 @@ const CategoryPage = () => {
         </p>
       ) : (
         <>
-          <p className="text-sm text-muted-foreground mb-4">
+          <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-4">
             {filtered.length} product{filtered.length !== 1 ? "s" : ""}
           </p>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 pb-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 pb-4">
             {filtered.map((p, i) => (
               <ProductCard key={p.id} product={p} index={i} />
             ))}
