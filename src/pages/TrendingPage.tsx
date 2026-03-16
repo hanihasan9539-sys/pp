@@ -52,13 +52,13 @@ const TrendingPage = () => {
           }}
         />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-8 md:pt-8 md:pb-10">
           {/* Eyebrow — ping dot in TP Blue */}
           <motion.div
             initial={{ opacity: 0, x: -12 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.4, delay: 0.05 }}
-            className="flex items-center gap-2.5 mb-5"
+           className="flex items-center gap-2.5 mb-4"
           >
             <span className="relative flex h-2 w-2">
               <span
@@ -83,7 +83,7 @@ const TrendingPage = () => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-foreground leading-[1.05]"
+            className="text-[26px] sm:text-4xl lg:text-5xl font-semibold tracking-tight text-foreground leading-tight"
           >
             Trending
             <br />
@@ -95,7 +95,7 @@ const TrendingPage = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.4, delay: 0.3 }}
-            className="flex items-center gap-4 mt-6"
+            className="flex items-center gap-4 mt-4"
           >
             <span className="text-sm text-muted-foreground">
               {trending.length} products
@@ -107,13 +107,13 @@ const TrendingPage = () => {
       </div>
 
       {/* ── Product Grid ── */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-6">
         {/* Rank Legend */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.35 }}
-          className="flex items-center justify-between mb-8"
+          className="flex items-center justify-between mb-4"
         >
           <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
             Top Picks

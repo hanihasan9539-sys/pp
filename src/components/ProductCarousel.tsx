@@ -1,161 +1,74 @@
-import { useRef, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { Star } from "lucide-react";
 import { motion } from "framer-motion";
-import ProductCard from "@/components/ProductCard"
 import type { Product } from "@/data/products";
 
-interface ProductCarouselProps {
-  products: Product[];  
-  title: string; 
-  accentColor?: string;
-  eyebrow?: string;
+interface ProductCardProps {
+  product: Product;
+  index?: number;
 }
-const ITEMS_PER_PAGE = 4;
 
-export default function ProductCarousel({
-    products,
-  title,
-  eyebrow = "Featured",
-  accentColor = "#1A8BBF",
-}: ProductCarouselProps) {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [activePage, setActivePage] = useState(0);
-  const totalPages = Math.ceil(products.length / ITEMS_PER_PAGE);
-
-  // Group products into pages of 4
-  const pages = [];
-  for (let i = 0; i < products.length; i += ITEMS_PER_PAGE) {
-    const pageProducts = products.slice(i, i + ITEMS_PER_PAGE);
-    const padded = [
-      ...pageProducts,
-      ...Array(Math.max(0, ITEMS_PER_PAGE - pageProducts.length)).fill(null),
-    ];
-    pages.push(padded);
-  }
-
-  const handleScroll = () => {
-    if (!scrollRef.current) return;
-    const { scrollLeft, clientWidth } = scrollRef.current;
-    const newPage = Math.round(scrollLeft / clientWidth);
-    setActivePage(Math.min(newPage, totalPages - 1));
-  };
-
-  useEffect(() => {
-    const scrollContainer = scrollRef.current;
-    if (scrollContainer) {
-      scrollContainer.addEventListener("scroll", handleScroll, { passive: true });
-      return () => scrollContainer.removeEventListener("scroll", handleScroll);
-    }
-  }, [totalPages]);
-
-  const scrollToPage = (pageIndex: number) => {
-    if (!scrollRef.current) return;
-    scrollRef.current.scrollTo({
-      left: pageIndex * scrollRef.current.clientWidth,
-      behavior: "smooth",
-    });
-  };
-
-  const Header = () => (
-    <div className="flex items-end justify-between mb-4 px-4 sm:px-6 lg:px-8">
-      <div>
-        <div className="flex items-center gap-2 mb-1.5">
-          <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: accentColor }} />
-          <span
-            className="text-[10px] font-semibold uppercase tracking-[0.18em]"
-            style={{ color: accentColor }}
-          >
-            {eyebrow}
-          </span>
-        </div>
-        <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-foreground leading-tight">
-          {title}
-        </h2>
-      </div>
-
-      {totalPages > 1 && (
-        <div className="sm:hidden text-sm font-medium" style={{ color: accentColor }}>
-          {activePage + 1} / {totalPages}
-        </div>
-      )}
-    </div>
-  );
-
+const ProductCard = ({ product, index = 0 }: ProductCardProps) => {
   return (
-    <section className="w-full">
-      {/* ── MOBILE: full-page snap, exactly 4 products at a time ── */}
-      <div className="sm:hidden">
-        <Header />
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.25, delay: index * 0.05, ease: [0.32, 0.72, 0, 1] }}
+    >
+      <Link to={`/product/${product.id}`} className="group block">
+        <div className="bg-card rounded-xl overflow-hidden shadow-[0_0_0_1px_rgba(0,0,0,.05),0_1px_2px_0_rgba(0,0,0,.05)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_0_0_1px_rgba(0,0,0,.05),0_4px_6px_-1px_rgba(0,0,0,.1),0_2px_4px_-2px_rgba(0,0,0,.1)]">
+          <div className="relative aspect-square overflow-hidden bg-secondary">
+            <img
+              src={product.images[0]}
+              alt={product.name}
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
+            />
+            {/* Badges */}
+            <div className="absolute top-2 left-2 flex flex-col gap-1">
+              {product.isNew && (
+                <span className="px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider bg-primary text-primary-foreground rounded-md">
+                  New
+                </span>
+              )}
+              {product.discountPercentage && (
+                <span className="px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider bg-accent text-accent-foreground rounded-md">
+                  -{product.discountPercentage}%
+                </span>
+              )}
+              {product.tags.includes("trending") && !product.isNew && !product.discountPercentage && (
+                <span className="px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider bg-accent text-accent-foreground rounded-md">
+                  🔥 Hot
+                </span>
+              )}
+            </div>
+          </div>
 
-        {/* overflow-hidden prevents any bleed from the next page */}
-        <div className="overflow-hidden px-4">
-          <div
-            ref={scrollRef}
-            className="flex snap-x snap-mandatory overflow-x-auto scroll-smooth"
-            style={{
-              scrollbarWidth: "none",
-              msOverflowStyle: "none",
-              WebkitOverflowScrolling: "touch",
-            }}
-          >
-            {pages.map((pageProducts, pageIndex) => (
-              /* w-full = exactly 100% of the scroll container — no peek */
-              <div
-                key={pageIndex}
-                className="snap-start snap-always shrink-0 w-full"
-              >
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.4 }}
-                  className="grid grid-cols-2 gap-4"
-                >
-                  {pageProducts.map((product, i) =>
-                    product ? (
-                      <div key={product.id} className="relative group">
-                        <ProductCard
-                          product={product}
-                          index={pageIndex * ITEMS_PER_PAGE + i}
-                        />
-                      </div>
-                    ) : (
-                      <div key={`empty-${pageIndex}-${i}`} aria-hidden className="invisible" />
-                    )
-                  )}
-                </motion.div>
-              </div>
-            ))}
+          <div className="p-2.5 sm:p-4">
+            <h3 className="text-xs font-semibold text-foreground truncate">{product.name}</h3>
+            <p className="text-[10px] text-muted-foreground mt-0.5 truncate">{product.shortDesc}</p>
+
+            <div className="flex items-center gap-1 mt-1.5">
+              <Star className="w-3 h-3 fill-rating text-rating" />
+              <span className="text-[10px] font-medium text-foreground tabular-nums">{product.rating}</span>
+              <span className="text-[9px] text-muted-foreground">({product.reviews})</span>
+            </div>
+
+            <div className="flex items-center gap-1.5 mt-1.5">
+              <span className="text-sm font-bold text-foreground tabular-nums">
+                ₹{product.price.toLocaleString()}
+              </span>
+              {product.originalPrice && (
+                <span className="text-[9px] text-muted-foreground line-through tabular-nums">
+                  ₹{product.originalPrice.toLocaleString()}
+                </span>
+              )}
+            </div>
           </div>
         </div>
-
-        {totalPages > 1 && (
-          <div className="flex items-center justify-center gap-2 mt-5">
-            {pages.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => scrollToPage(i)}
-                className="transition-all duration-300 rounded-full"
-                style={{
-                  width: i === activePage ? "24px" : "8px",
-                  height: "8px",
-                  backgroundColor: i === activePage ? accentColor : "#94a3b8",
-                  opacity: i === activePage ? 1 : 0.45,
-                }}
-                aria-label={`Go to page ${i + 1}`}
-              />
-            ))}
-          </div>
-        )}
-      </div>
-
-      {/* ── DESKTOP: static grid unchanged ── */}
-      <div className="hidden sm:block">
-        <Header />
-        <div className="grid grid-cols-3 lg:grid-cols-4 gap-4 px-6 lg:px-8">
-          {products.map((product, i) => (
-            <ProductCard key={product.id} product={product} index={i} />
-          ))}
-        </div>
-      </div>
-    </section>
+      </Link>
+    </motion.div>
   );
-}
+};
+
+export default ProductCard;

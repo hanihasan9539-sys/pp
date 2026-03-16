@@ -185,7 +185,7 @@ const About: React.FC = () => {
               </div>
               {/* mobile: small tinted icon */}
               <div className="stat-icon-mobile" style={{ background: stat.bg }}>
-                <stat.icon size={18} style={{ color: stat.color }} />
+                <stat.icon size={16} style={{ color: stat.color }} />
               </div>
               <div className="stat-value" style={{ color: stat.color }}>{stat.value}</div>
               <div className="stat-label">{stat.label}</div>
@@ -236,9 +236,7 @@ const About: React.FC = () => {
                 multiple categories, all backed by our commitment to quality and customer
                 satisfaction.
               </p>
-              <button className="story-cta">
-                Shop Now <ChevronRight size={16} />
-              </button>
+              
             </div>
           </div>
         </div>
@@ -296,7 +294,7 @@ const About: React.FC = () => {
               <div key={value.title} className="value-card" style={{ animationDelay: `${index * 0.1}s` }}>
                 <div className="value-top-bar" style={{ background: value.gradient }} />
                 <div className="value-icon-wrap" style={{ background: value.gradient }}>
-                  <value.icon size={22} color="white" />
+                  <value.icon size={20} color="white" />
                 </div>
                 <h3 className="value-title">{value.title}</h3>
                 <p className="value-desc">{value.description}</p>
@@ -337,7 +335,7 @@ const About: React.FC = () => {
                   </div>
                   <div className="testimonial-stars mobile-stars">
                     {[...Array(t.rating)].map((_, i) => (
-                      <Star key={i} size={14} fill="#ED1C24" color="#ED1C24" />
+                      <Star key={i} size={12} fill="#ED1C24" color="#ED1C24" />
                     ))}
                   </div>
                   <p className="testimonial-text">"{t.feedback}"</p>
@@ -353,7 +351,7 @@ const About: React.FC = () => {
                       {/* desktop: plain text location */}
                       <span className="desktop-loc">{t.location}</span>
                       {/* mobile: icon + city only */}
-                      <span className="mobile-loc"><MapPin size={11} /> {t.location.split(',')[0]}</span>
+                      <span className="mobile-loc"><MapPin size={10} /> {t.location.split(',')[0]}</span>
                     </div>
                   </div>
                 </div>
@@ -481,13 +479,13 @@ const About: React.FC = () => {
         /* ══════════════ STATS ══════════════ */
         /* MOBILE: single row card (code 1 style) */
         .stats-section {
-          padding: 0 8px;
+          padding: 0 2px;
           margin-top: -32px;
           position: relative; z-index: 10;
         }
         .stats-inner {
           background: var(--bg-card);
-          border-radius: 20px;
+          border-radius: 16px;
           box-shadow: var(--shadow-stats);
           display: grid;
           grid-template-columns: repeat(4, 1fr);
@@ -496,7 +494,7 @@ const About: React.FC = () => {
           margin: 0 auto;
         }
         .stat-card {
-          padding: 20px 10px;
+          padding: 12px 2px;
           text-align: center;
           border-right: 1px solid var(--border-card);
           animation: fadeUp 0.5s ease both;
@@ -512,17 +510,17 @@ const About: React.FC = () => {
         }
         /* mobile icon */
         .stat-icon-mobile {
-          width: 38px; height: 38px; border-radius: 12px;
+          width: 30px; height: 30px; border-radius: 8px;
           display: flex; align-items: center; justify-content: center;
-          margin: 0 auto 8px;
+          margin: 0 auto 4px;
         }
         .stat-value {
-          font-size: clamp(1rem, 2.5vw, 1.5rem);
-          font-weight: 800; line-height: 1;
+          font-size: clamp(0.85rem, 2.2vw, 1.5rem);
+          font-weight: 800; line-height: 1.2;
         }
         .stat-label {
-          font-size: 11px; color: #94a3b8; font-weight: 700;
-          margin-top: 4px; letter-spacing: 0.03em; text-transform: uppercase;
+          font-size: 8px; color: #94a3b8; font-weight: 700;
+          margin-top: 2px; letter-spacing: 0.02em; text-transform: uppercase;
         }
 
         /* ══════════════ SECTIONS COMMON ══════════════ */
@@ -596,8 +594,8 @@ const About: React.FC = () => {
         .story-cta {
           display: inline-flex; align-items: center; gap: 6px;
           background: linear-gradient(135deg, #1B8BBE, #ED1C24);
-          color: white; border: none; padding: 13px 26px;
-          border-radius: 100px; font-weight: 800; font-size: 15px;
+          color: white; border: none; padding: 12px 24px;
+          border-radius: 100px; font-weight: 800; font-size: 14px;
           cursor: pointer; width: fit-content;
           transition: transform 0.2s, box-shadow 0.2s;
           box-shadow: 0 6px 20px rgba(27,139,190,0.35);
@@ -610,10 +608,10 @@ const About: React.FC = () => {
         .gallery-grid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
-          gap: 12px;
+          gap: 10px;
         }
         .gallery-item {
-          position: relative; border-radius: 20px; overflow: hidden;
+          position: relative; border-radius: 16px; overflow: hidden;
           aspect-ratio: 4/3; cursor: pointer;
           box-shadow: 0 4px 20px rgba(0,0,0,0.10);
           animation: fadeUp 0.5s ease both;
@@ -626,13 +624,13 @@ const About: React.FC = () => {
           position: absolute; inset: 0;
           background: linear-gradient(to top, rgba(15,23,42,0.55) 0%, transparent 60%);
           display: flex; align-items: flex-end; justify-content: space-between;
-          padding: 14px;
+          padding: 12px;
           opacity: 0; transition: opacity 0.3s;
         }
         .gallery-item:hover .gallery-overlay { opacity: 1; }
         /* mobile: show number */
         .gallery-num {
-          font-size: 22px; font-weight: 800; color: white; opacity: 0.6;
+          font-size: 18px; font-weight: 800; color: white; opacity: 0.6;
         }
         /* desktop: decorative corner (hidden on mobile) */
         .gallery-corner-decor {
@@ -650,11 +648,11 @@ const About: React.FC = () => {
         .values-grid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
-          gap: 10px;
+          gap: 8px;
         }
         .value-card {
           position: relative; background: var(--bg-card);
-          border-radius: 14px; padding: 10px 10px 12px;
+          border-radius: 12px; padding: 8px 8px 10px;
           box-shadow: var(--shadow-card);
           border: 1px solid var(--border-card);
           overflow: hidden; animation: fadeUp 0.5s ease both;
@@ -665,16 +663,16 @@ const About: React.FC = () => {
           position: absolute; top: 0; left: 0; right: 0; height: 3px;
         }
         .value-icon-wrap {
-          width: 34px; height: 34px; border-radius: 9px;
+          width: 30px; height: 30px; border-radius: 8px;
           display: flex; align-items: center; justify-content: center;
-          margin-bottom: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.18);
+          margin-bottom: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.18);
         }
         .value-title {
           font-size: clamp(10px, 2vw, 13px); font-weight: 700;
-          color: var(--text-heading); margin: 0 0 4px;
+          color: var(--text-heading); margin: 0 0 3px;
         }
         .value-desc {
-          font-size: clamp(9.5px, 1.8vw, 11px); color: var(--text-muted); line-height: 1.55; margin: 0;
+          font-size: clamp(9px, 1.8vw, 11px); color: var(--text-muted); line-height: 1.5; margin: 0;
         }
 
         /* ══════════════ TESTIMONIALS ══════════════ */
@@ -682,10 +680,10 @@ const About: React.FC = () => {
         .testimonials-grid {
           display: grid;
           grid-template-columns: 1fr;
-          gap: 12px;
+          gap: 10px;
         }
         .testimonial-card {
-          background: var(--bg-card); border-radius: 20px; overflow: hidden;
+          background: var(--bg-card); border-radius: 16px; overflow: hidden;
           box-shadow: var(--shadow-card);
           border: 1px solid var(--border-card);
           animation: fadeUp 0.5s ease both;
@@ -698,8 +696,8 @@ const About: React.FC = () => {
           background: linear-gradient(90deg, #1B8BBE, #ED1C24, #1B8BBE);
           flex-shrink: 0;
         }
-        .testimonial-body { padding: 16px 16px 14px; flex: 1; }
-        .testimonial-stars { display: flex; gap: 3px; margin-bottom: 10px; }
+        .testimonial-body { padding: 14px 14px 12px; flex: 1; }
+        .testimonial-stars { display: flex; gap: 3px; margin-bottom: 8px; }
 
         /* show/hide based on breakpoint */
         .desktop-stars { display: none; }
@@ -709,30 +707,30 @@ const About: React.FC = () => {
 
         .testimonial-text {
           font-size: clamp(11px, 2vw, 13px); color: var(--text-body);
-          line-height: 1.7; font-style: italic; margin: 0;
+          line-height: 1.6; font-style: italic; margin: 0;
         }
         .testimonial-author {
-          display: flex; align-items: center; gap: 10px;
-          padding: 12px 16px;
+          display: flex; align-items: center; gap: 8px;
+          padding: 8px 12px;
           border-top: 1px solid var(--border-author);
           background: var(--bg-author);
           flex-shrink: 0;
         }
         .testimonial-avatar-wrap { position: relative; flex-shrink: 0; }
         .testimonial-avatar {
-          width: 40px; height: 40px; border-radius: 50%; object-fit: cover;
+          width: 32px; height: 32px; border-radius: 50%; object-fit: cover;
           border: 2px solid rgba(27,139,190,0.25);
         }
         .testimonial-online {
           position: absolute; bottom: 1px; right: 1px;
-          width: 10px; height: 10px; background: #22c55e;
+          width: 8px; height: 8px; background: #22c55e;
           border-radius: 50%; border: 2px solid var(--online-border);
         }
         .testimonial-name {
           font-size: clamp(11px, 2vw, 13px); font-weight: 800; color: var(--text-heading);
         }
         .testimonial-loc {
-          font-size: 11px; color: var(--text-label); margin-top: 2px;
+          font-size: 9px; color: var(--text-label); margin-top: 2px;
         }
 
         /* ══════════════ ANIMATIONS ══════════════ */
@@ -829,13 +827,21 @@ const About: React.FC = () => {
         /* ══════════════ MOBILE FINE-TUNING ══════════════ */
         @media (max-width: 480px) {
           .hero-section  { padding: 48px 4px 56px; }
-          .stats-section { padding: 0 4px; }
-          .stats-inner   { border-radius: 14px; }
-          .stat-card     { padding: 12px 2px; }
+          .stats-section { padding: 0 2px; }
+          .stats-inner   { border-radius: 12px; }
+          .stat-card     { padding: 8px 1px; }
+          .stat-icon-mobile { width: 26px; height: 26px; border-radius: 6px; }
+          .stat-icon-mobile svg { width: 12px; height: 12px; }
+          .stat-value { font-size: 0.8rem; }
+          .stat-label { font-size: 7px; }
           .section-pad   { padding: 32px 4px; }
-          .gallery-grid  { gap: 6px; }
-          .gallery-item  { border-radius: 12px; }
-          .values-grid   { gap: 5px; }
+          .gallery-grid  { gap: 4px; }
+          .gallery-item  { border-radius: 10px; }
+          .gallery-num   { font-size: 16px; }
+          .values-grid   { gap: 4px; }
+          .value-card    { padding: 6px 6px 8px; }
+          .value-icon-wrap { width: 26px; height: 26px; }
+          .value-icon-wrap svg { width: 14px; height: 14px; }
           .testimonials-grid { gap: 6px; }
         }
       `}</style>
