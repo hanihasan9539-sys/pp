@@ -1,0 +1,23 @@
+{
+  "name": "PP Collections",
+  "short_name": "PP",
+  "description": "Premium e-commerce store with WhatsApp ordering. Discover curated products crafted for the discerning.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#1486A5",
+  "lang": "en",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
