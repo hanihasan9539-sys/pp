@@ -27,39 +27,39 @@ const ProductCard = ({ product, index = 0 }: ProductCardProps) => {
             {/* Badges */}
             <div className="absolute top-2 left-2 flex flex-col gap-1">
               {product.isNew && (
-                <span className="px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider bg-primary text-primary-foreground rounded-md">
+                <span className="px-1.5 py-0.5 text-[9px] sm:px-2 sm:py-0.5 sm:text-[10px] font-semibold uppercase tracking-wider bg-primary text-primary-foreground rounded-md">
                   New
                 </span>
               )}
               {product.discountPercentage && (
-                <span className="px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider bg-accent text-accent-foreground rounded-md">
+                <span className="px-1.5 py-0.5 text-[9px] sm:px-2 sm:py-0.5 sm:text-[10px] font-semibold uppercase tracking-wider bg-accent text-accent-foreground rounded-md">
                   -{product.discountPercentage}%
                 </span>
               )}
               {product.tags.includes("trending") && !product.isNew && !product.discountPercentage && (
-                <span className="px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider bg-accent text-accent-foreground rounded-md">
+                <span className="px-1.5 py-0.5 text-[9px] sm:px-2 sm:py-0.5 sm:text-[10px] font-semibold uppercase tracking-wider bg-accent text-accent-foreground rounded-md">
                   🔥 Hot
                 </span>
               )}
             </div>
           </div>
 
-          <div className="p-3 sm:p-4">
-            <h3 className="text-sm font-semibold text-foreground truncate">{product.name}</h3>
-            <p className="text-xs text-muted-foreground mt-0.5 truncate">{product.shortDesc}</p>
+          <div className="p-2.5 sm:p-4">
+            <h3 className="text-xs sm:text-sm font-semibold text-foreground truncate leading-tight">{product.name}</h3>
+            <p className="text-[10px] sm:text-xs text-muted-foreground mt-0.5 truncate leading-normal">{product.shortDesc}</p>
 
-            <div className="flex items-center gap-1 mt-2">
-              <Star className="w-3.5 h-3.5 fill-rating text-rating" />
-              <span className="text-xs font-medium text-foreground tabular-nums">{product.rating}</span>
-              <span className="text-xs text-muted-foreground">({product.reviews})</span>
+            <div className="flex items-center gap-1 mt-1.5 sm:mt-2">
+              <Star className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-rating text-rating" />
+              <span className="text-[10px] sm:text-xs font-medium text-foreground tabular-nums">{product.rating}</span>
+              <span className="text-[9px] sm:text-xs text-muted-foreground">({product.reviews})</span>
             </div>
 
-            <div className="flex items-center gap-2 mt-2">
-              <span className="text-base font-bold text-foreground tabular-nums">
+            <div className="flex items-center gap-1.5 sm:gap-2 mt-1.5 sm:mt-2">
+              <span className="text-sm sm:text-base font-bold text-foreground tabular-nums">
                 ₹{product.price.toLocaleString()}
               </span>
               {product.originalPrice && (
-                <span className="text-xs text-muted-foreground line-through tabular-nums">
+                <span className="text-[10px] sm:text-xs text-muted-foreground line-through tabular-nums">
                   ₹{product.originalPrice.toLocaleString()}
                 </span>
               )}

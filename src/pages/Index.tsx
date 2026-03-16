@@ -60,7 +60,7 @@ const Index = () => {
           <SectionHeader
             title="Shop by Category"
             eyebrow="Browse"
-            accentColor="#D42027"
+            accentColor="#1A8BBF"
           />
 
           <div className="flex gap-3 overflow-x-auto scrollbar-hide pb-2">
